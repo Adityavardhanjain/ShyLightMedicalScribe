@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Injury Questionnaire</title>
+  <script src="https://cdn.jsdelivr.net/npm/docx@9.0.2/build/index.umd.min.js"></script>
+</head>
+<body>
+  <h1>Injury Questionnaire</h1>
+
+  <form id="injury-form">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br>
+
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob" name="dob" required><br>
+
+    <label for="doi">Date of Injury:</label>
+    <input type="date" id="doi" name="doi" required><br>
+
+    <label for="chief-complaint">Chief Complaint:</label>
+    <textarea id="chief-complaint" name="chief-complaint" required></textarea><br>
+
+    <label for="pain-scale">Pain Scale (1-10):</label>
+    <input type="number" id="pain-scale" name="pain-scale" min="1" max="10" required><br>
+
+    <label for="pain-details">Pain Details:</label>
+    <textarea id="pain-details" name="pain-details" required></textarea><br>
+
+    <label for="accident-details">Accident Details:</label>
+    <textarea id="accident-details" name="accident-details" required></textarea><br>
+
+    <label for="treatment-history">Treatment History:</label>
+    <textarea id="treatment-history" name="treatment-history" required></textarea><br>
+
+    <label for="past-injury-history">Past Injury History:</label>
+    <textarea id="past-injury-history" name="past-injury-history"></textarea><br>
+
+    <label for="past-medical-history">Past Medical History:</label>
+    <textarea id="past-medical-history" name="past-medical-history"></textarea><br>
+
+    <label for="surgical-history">Past Surgical History:</label>
+    <textarea id="surgical-history" name="surgical-history"></textarea><br>
+
+    <label for="current-medications">Current Medications:</label>
+    <textarea id="current-medications" name="current-medications"></textarea><br>
+
+    <label for="allergies">Allergies:</label>
+    <textarea id="allergies" name="allergies"></textarea><br>
+
+    <label for="adl-capabilities">ADL Capabilities:</label>
+    <textarea id="adl-capabilities" name="adl-capabilities"></textarea><br>
+
+    <label for="social-history">Social History:</label>
+    <textarea id="social-history" name="social-history"></textarea><br>
+
+    <label for="work-history">Work History:</label>
+    <textarea id="work-history" name="work-history"></textarea><br>
+
+    <label for="physical-exam">Physical Examination:</label>
+    <textarea id="physical-exam" name="physical-exam"></textarea><br>
+
+    <label for="diagnostic-studies">Diagnostic Studies:</label>
+    <textarea id="diagnostic-studies" name="diagnostic-studies"></textarea><br>
+
+    <label for="treatment-plan">Treatment Plan:</label>
+    <textarea id="treatment-plan" name="treatment-plan"></textarea><br>
+
+    <label for="disability-degree">Degree of Disability:</label>
+    <textarea id="disability-degree" name="disability-degree"></textarea><br>
+
+    <label for="causal-relationship">Causal Relationship:</label>
+    <textarea id="causal-relationship" name="causal-relationship"></textarea><br>
+
+    <button type="button" onclick="generateDocument()">Generate Document</button>
+  </form>
+
+  <script>
+    async function generateDocument() {
+      const formData = new FormData(document.getElementById('injury-form'));
+
+      const doc = new docx.Document({
+        sections: [{
+          properties: {},
+          children: [
+            new docx.Paragraph({
+              children: [
+                new docx.TextRun({ text: `Patient: ${formData.get('name')}`, bold: true, size: 28 }),
+                new docx.TextRun("\n"),
+                new docx.TextRun({ text: `Date of Birth: ${formData.get('dob')}`, size: 24 }),
+                new docx.TextRun("\n"),
+                new docx.TextRun({ text: `Date of Injury: ${formData.get('doi')}`, size: 24 }),
+                new docx.TextRun("\n"),
+                new docx.TextRun({ text: `Chief Complaint: ${formData.get('chief-complaint')}`, size: 24 }),
+                new docx.TextRun("\n"),
+                new docx.TextRun({ text: `Pain Scale: ${formData.get('pain-scale')} / 10`, size: 24 }),
+                new docx.TextRun("\n"),
+                new docx.TextRun({ text: `Pain Details: ${formData.get('pain-details')}`, size: 24 }),
+                new docx.TextRun("\n"),
+                new docx.TextRun({ text: `Accident Details: ${formData.get('accident-details')}`, size: 24 }),
+                new docx.TextRun("\n"),
+                new docx.TextRun({ text: `Treatment History: ${formData.get('treatment-history')}`, size: 24 }),
+                new docx.TextRun("\n"),
+                new docx.TextRun({ text: `Past Injury History: ${formData.get('past-injury-history')}`, size: 24 }),
+                new docx.TextRun("\n"),
+                new docx.TextRun({ text: `Past Medical History: ${formData.get('past-medical-history')}`, size: 24 }),
+                new docx.TextRun("\n"),
+                new docx.TextRun({ text: `Surgical History: ${formData.get('surgical-history')}`, size: 24 }),
+                new docx.TextRun("\n"),
+                new docx.TextRun({ text: `Current Medications: ${formData.get('current-medications')}`, size: 24 }),
+                new docx.TextRun("\n"),
+                new docx.TextRun({ text: `Allergies: ${formData.get('allergies')}`, size: 24 }),
+                new docx.TextRun("\n"),
+                new docx.TextRun({ text: `ADL Capabilities: ${formData.get('adl-capabilities')}`, size: 24 }),
+                new docx.TextRun("\n"),
+                new docx.TextRun({ text: `Social History: ${formData.get('social-history')}`, size: 24 }),
+                new docx.TextRun("\n"),
+                new docx.TextRun({ text: `Work History: ${formData.get('work-history')}`, size: 24 }),
+                new docx.TextRun("\n"),
+                new docx.TextRun({ text: `Physical Examination: ${formData.get('physical-exam')}`, size: 24 }),
+                new docx.TextRun("\n"),
+                new docx.TextRun({ text: `Diagnostic Studies: ${formData.get('diagnostic-studies')}`, size: 24 }),
+                new docx.TextRun("\n"),
+                new docx.TextRun({ text: `Treatment Plan: ${formData.get('treatment-plan')}`, size: 24 }),
+                new docx.TextRun("\n"),
+                new docx.TextRun({ text: `Degree of Disability: ${formData.get('disability-degree')}`, size: 24 }),
+                new docx.TextRun("\n"),
+                new docx.TextRun({ text: `Causal Relationship: ${formData.get('causal-relationship')}`, size: 24 })
+              ]
+            })
+          ]
+        }]
+      });
+
+      const blob = await docx.Packer.toBlob(doc);
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `${formData.get('name')}_Injury_Report.docx`;
+      link.click();
+
+      alert("Document generated successfully!");
+    }
+  </script>
+</body>
+</html>
